@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');  // 抽离css插件
-const OptimizeCss = require('optimize-css-assets-webpack-plugin');  // 压缩优化css插件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 抽离css插件
+const OptimizeCss = require('optimize-css-assets-webpack-plugin'); // 压缩优化css插件
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩优化js插件
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   mode: 'development',
@@ -10,13 +11,13 @@ module.exports = {
     minimizer: [
       new UglifyJsPlugin({
         cache: true,
-        parallel: true,  // 并发打包
+        parallel: true, // 并发打包
         sourceMap: true
       }),
       new OptimizeCss()
     ]
   },
-  devServer: {  // 开发服务器配置
+  devServer: { // 开发服务器配置
     port: 3001,
     progress: true,
     contentBase: './dist',
@@ -34,31 +35,61 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.ts(x?)$/,
         use: {
           loader: 'ts-loader',
           options: {
-    
+
           }
         }
       },
       {
-        test: /\.css$/, 
+        test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          {loader: 'css-loader'},
-          {loader: 'postcss-loader'}
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer({
+                  'overrideBrowserslist': ['> 1%', 'last 2 versions']
+                })
+              ]
+            }
+          }
         ]
       },
       {
-        test: /\.less$/, 
+        test: /\.less$/,
         use: [
           MiniCssExtractPlugin.loader,
-          {loader: 'css-loader'},
-          {loader: 'postcss-loader'},
-          {loader: 'less-loader'}
+          {
+            loader: 'css-loader',
+            options: {
+              'modules': true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer({
+                  'overrideBrowserslist': ['> 1%', 'last 2 versions']
+                })
+              ]
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              strictMath: true,
+              noIeCompat: true,
+            },
+          }
         ]
       }
     ]

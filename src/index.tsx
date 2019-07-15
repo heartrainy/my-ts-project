@@ -1,8 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import './index.less';
+import style from './index.less';
 
 ReactDOM.render(
-  <div>Hello</div>,
+  <div className={style.myName}>Hello</div>,
   document.getElementById("root")
 )
