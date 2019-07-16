@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 interface Props {
 
 }
 interface State {
-  list: string,
+  list: string
 }
 class App extends Component<Props, State> {
   constructor(props: Props) {
@@ -17,7 +17,7 @@ class App extends Component<Props, State> {
       <div>
         {this.state.list}
       </div>
-    );
+    )
   }
 }
-export default App;
+export default App

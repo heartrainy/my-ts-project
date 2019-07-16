@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Test from "@components/Test";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Test from '@components/Test'
 
-import './index.less';
+import './index.less'
 
 ReactDOM.render(
   <Test />,
-  document.getElementById("root")
+  document.getElementById('root')
 )

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button } from 'antd';
+import React from 'react'
+import { Button } from 'antd'
 
 export default class Test extends React.Component {
   render() {
