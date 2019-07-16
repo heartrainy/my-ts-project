@@ -1,11 +1,14 @@
-@import './global.less';
+@import 'style/global.less';
 
 body {
-  font-size: 28px;
+  font-size: @bodySize;
   color: blue;
 }
 
 .myName {
   font-size: 30px;
-  color: yellow;
+  color: #ffff00;
+  div {
+    color: blue;
+  }
 }
