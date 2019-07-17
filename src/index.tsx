@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Test from '@components/Test'
+import App from './App'
 
 import './index.less'
 
 ReactDOM.render(
-  <Test />,
+  <App />,
   document.getElementById('root')
 )

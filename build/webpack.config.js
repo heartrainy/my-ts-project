@@ -22,7 +22,8 @@ module.exports = {
     port: 3001,
     progress: true,
     contentBase: './dist',
-    open: true
+    open: true,
+    historyApiFallback: true  // 允许浏览器直接访问地址
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
