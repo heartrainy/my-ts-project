@@ -1,5 +1,5 @@
 import Users from '@pages/Users'
-import Test from '@pages/Test'
+import Test from '@containers/Test'
 
 interface Iroute {
   path?: string,
