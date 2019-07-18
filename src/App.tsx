@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { Layout, Menu, Icon } from 'antd'
 
-import Users from '@pages/Users'
+import routes from './routers/routes'
 
 const { Header, Sider, Content } = Layout
-const menuConfig: object[] = [
+const menuConfig: any[] = [
   {key: 1, path: '/users', text: '用户', icon: 'user'}
 ]
 
+// interface
 interface Props {
 
 }
@@ -66,7 +67,19 @@ class App extends Component<Props, State> {
               }}
             >
               <Router>
-                <Route path="/users" component={Users} />
+                <Switch>
+                  {routes.map((route: any, index: number) => (
+                    (
+                      <Route
+                        key={index}
+                        path={route.path}
+                        render={props => (
+                          <route.component {...props} routes={route.routes} />
+                        )}
+                      />
+                    )
+                  ))}
+                </Switch>
               </Router>
             </Content>
           </Layout>

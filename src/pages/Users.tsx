@@ -1,6 +1,14 @@
 import React from 'react'
 
-class Users extends React.Component {
+interface IProps {
+
+}
+
+interface IStates {
+
+}
+
+class Users extends React.Component<IProps, IStates> {
   public render() {
     return (
       <div>users</div>

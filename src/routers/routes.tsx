@@ -1,0 +1,21 @@
+import Users from '@pages/Users'
+import Test from '@pages/Test'
+
+interface Iroute {
+  path?: string,
+  component?: any,
+  route?: Iroute
+}
+
+const routes: Iroute[] = [
+  {
+    path: '/users',
+    component: Users
+  },
+  {
+    path: '/test',
+    component: Test
+  }
+]
+
+export default routes
