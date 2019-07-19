@@ -16,7 +16,8 @@ interface IProps {
   addNum(): void,
   decreaseNum(): void,
   addNum2(): void,
-  decreaseNum2(): void
+  decreaseNum2(): void,
+  addNumSaga(): void
 }
 
 interface IStates {
@@ -42,6 +43,10 @@ class Test extends React.Component<IProps, IStates> {
     this.props.decreaseNum2()
   }
 
+  public addNumSaga = () => {
+    this.props.addNumSaga()
+  }
+
   public render() {
     const { num } = this.props.test
     const { num2 } = this.props.test2
@@ -51,6 +56,7 @@ class Test extends React.Component<IProps, IStates> {
         <div>
           <Button onClick={this.addNum}>添加</Button>
           <Button onClick={this.decreaseNum}>减少</Button>
+          <Button onClick={this.addNumSaga}>添加Saga</Button>
         </div>
         <div>{num}</div>
         <div>

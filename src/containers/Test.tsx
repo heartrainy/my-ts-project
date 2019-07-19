@@ -27,6 +27,9 @@ export const mapDispatchToProps = (dispatch: any) => {
     },
     decreaseNum2: () => {
       dispatch({ type: DECREMENT2 })
+    },
+    addNumSaga: () => {
+      dispatch({ type: 'INCREMENT_ASYNC', payload: {name: 'name'}})
     }
   }
 }
