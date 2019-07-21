@@ -1,4 +1,4 @@
-import Users from '@pages/Users'
+import Users from '@containers/Users'
 import Test from '@containers/Test'
 
 interface Iroute {

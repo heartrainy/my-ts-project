@@ -49,6 +49,7 @@
     "react-router-dom": "^5.0.1",
     "redux-saga": "^1.0.5",
     "sass": "^1.22.5",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "umi-request": "^1.1.0"
   }
 }

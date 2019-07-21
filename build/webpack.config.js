@@ -23,7 +23,15 @@ module.exports = {
     progress: true,
     contentBase: './dist',
     open: true,
-    historyApiFallback: true  // 允许浏览器直接访问地址
+    historyApiFallback: true,  // 允许浏览器直接访问地址
+    proxy: {
+      '/proxy-prefix': {
+        target: 'http://localhost:3002',
+        pathRewrite: { '^/proxy-prefix': '' },
+        changeOrigin: true,
+        // secure: false, // 接受 运行在 https 上的服务
+      }
+    }
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
