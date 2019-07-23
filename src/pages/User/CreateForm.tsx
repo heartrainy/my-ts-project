@@ -1,4 +1,4 @@
-import { Form, Input, Modal, Select, DatePicker  } from 'antd'
+import { Form, Input, Modal, Select, DatePicker, Button  } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import React from 'react'
 
@@ -6,16 +6,18 @@ const FormItem = Form.Item
 const { Option } = Select
 
 interface CreateFormProps extends FormComponentProps {
-  modalVisible: boolean
-  handleAdd: (
-    fieldsValue: {
-      desc: string;
-    },
-  ) => void
+  modalVisible: boolean,
+  loading: boolean,
+  handleAdd: (fields: {
+    username: string,
+    sex: number,
+    phone: number,
+    birthday: string
+  }) => void
   handleModalVisible: (visible: boolean) => void
 }
 const CreateForm: React.FC<CreateFormProps> = props => {
-  const { modalVisible, form, handleAdd, handleModalVisible } = props
+  const { modalVisible, loading, form, handleAdd, handleModalVisible } = props
   const formItemLayout: any = {
     labelCol: {
       xs: { span: 24 },
@@ -29,8 +31,9 @@ const CreateForm: React.FC<CreateFormProps> = props => {
   const okHandle = () => {
     form.validateFields((err, fieldsValue) => {
       if (err) { return }
-      form.resetFields()
-      handleAdd(fieldsValue)
+      const postParams = Object.assign({}, fieldsValue)
+      postParams.birthday = fieldsValue.birthday.format('YYYY-MM-DD')
+      handleAdd(postParams)
     })
   }
 
@@ -40,8 +43,15 @@ const CreateForm: React.FC<CreateFormProps> = props => {
       maskClosable={false}
       title="新建"
       visible={modalVisible}
-      onOk={okHandle}
       onCancel={() => handleModalVisible(false)}
+      footer={[
+        <Button key="back" onClick={() => handleModalVisible(false)}>
+          取消
+        </Button>,
+        <Button key="submit" type="primary" loading={loading} onClick={okHandle}>
+          确定
+        </Button>,
+      ]}
     >
       <FormItem {...formItemLayout} label="用户名">
         {form.getFieldDecorator('username', {
@@ -59,7 +69,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
         )}
       </FormItem>
       <FormItem {...formItemLayout} label="手机号">
-        {form.getFieldDecorator('username', {
+        {form.getFieldDecorator('phone', {
           rules: [{ required: true, message: '请输入手机号！'}],
         })(<Input placeholder="请输入" />)}
       </FormItem>

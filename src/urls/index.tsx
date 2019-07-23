@@ -2,7 +2,8 @@ const prefix = 'proxy-prefix'
 
 const URL = {
   USER: {
-    ADDUSER: `${prefix}/getUserList`
+    USERLIST: `${prefix}/getUserList`,
+    USERADD: `${prefix}/addUser`
   }
 }
 

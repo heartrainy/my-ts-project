@@ -15,14 +15,17 @@ export interface IUserRecord {
 interface IUserProps {
   form: any
   data: IUserRecord[]
-  tableLoading: false
-  query(payload: any): void
+  tableLoading: false,
+  createLoading: false,
+  createVisible: boolean,
+  query(payload: any): void,
+  add(payload: any): any,
+  handleCreateVisible(payload: boolean): void
 }
 
 interface IUserStates {
   pageNum: number
-  pageSize: number
-  createModalVisible: boolean
+  pageSize: number,
   updateModalVisible: boolean
 }
 
@@ -31,7 +34,6 @@ class Users extends React.Component<IUserProps, IUserStates> {
   state: IUserStates = {
     pageNum: 1,
     pageSize: 10,
-    createModalVisible: false,
     updateModalVisible: false,
   }
 
@@ -65,13 +67,11 @@ class Users extends React.Component<IUserProps, IUserStates> {
   }
 
   public handleAdd = (fields: any) => {
-    console.log(1)
+    this.props.add(fields)
   }
 
   public handleCreateModalVisible = (visible: boolean) => {
-    this.setState({
-      createModalVisible: !!visible,
-    })
+    this.props.handleCreateVisible(visible)
   }
 
   public renderForm = () => {
@@ -111,8 +111,7 @@ class Users extends React.Component<IUserProps, IUserStates> {
   }
 
   public render() {
-    const { createModalVisible } = this.state
-    const { data, tableLoading } = this.props
+    const { data, tableLoading, createLoading, createVisible } = this.props
 
     // 行选择
     const rowSelection = {
@@ -171,7 +170,7 @@ class Users extends React.Component<IUserProps, IUserStates> {
             <Table loading={tableLoading} rowSelection={rowSelection} columns={columns} dataSource={data} />
           </div>
         </Card>
-        <CreateForm {...createParentMethods} modalVisible={createModalVisible} />
+        <CreateForm {...createParentMethods} modalVisible={createVisible} loading={createLoading} />
       </>
     )
   }

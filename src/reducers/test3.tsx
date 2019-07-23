@@ -3,7 +3,6 @@ const initState = {
 }
 
 export default function test3(state = initState, action: any) {
-  console.log('进来了3')
   switch (action.type) {
     case 'INCREMENT3':
       state.num3 = state.num3 + 1

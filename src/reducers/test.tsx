@@ -5,7 +5,6 @@ const initState = {
 }
 
 export default function test(state = initState, action: any) {
-  console.log('进来了1')
   switch (action.type) {
     case INCREMENT:
       state.num = state.num + 1
