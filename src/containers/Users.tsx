@@ -10,8 +10,8 @@ const mapStateToProps = (state: any) => {
 
 export const mapDispatchToProps = (dispatch: any) => {
   return {
-    query: (params: any) => {
-      dispatch({ type: USER_QUERY_ASYNC , payload: {...params}})
+    query: (payload: any) => {
+      dispatch({ type: USER_QUERY_ASYNC , payload})
     }
   }
 }

@@ -16,7 +16,7 @@ interface IUserProps {
 interface IUserStates {
   pageNum: number,
   pageSize: number,
-  data: any[]
+  tableLoading: boolean
 }
 
 class Users extends React.Component<IUserProps, IUserStates> {
@@ -24,38 +24,21 @@ class Users extends React.Component<IUserProps, IUserStates> {
   state: IUserStates = {
     pageNum: 1,
     pageSize: 10,
-    data: [
-      {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-      },
-      {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-      },
-      {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-      },
-      {
-        key: '4',
-        name: 'Disabled User',
-        age: 99,
-        address: 'Sidney No. 1 Lake Park',
-      }
-    ]
+    tableLoading: false
   }
 
   public componentDidMount() {
-    this.props.query({
-      pageNum: this.state.pageNum,
-      pageSize: this.state.pageSize
+    this.getList()
+  }
+
+  public getList = () => {
+    this.setState({
+      tableLoading: true,
+    }, () => {
+      this.props.query({
+        pageNum: this.state.pageNum,
+        pageSize: this.state.pageSize
+      })
     })
   }
 
@@ -72,6 +55,7 @@ class Users extends React.Component<IUserProps, IUserStates> {
   }
 
   public render() {
+    const { tableLoading } = this.state
     const { data } = this.props
 
     // 行选择
@@ -115,7 +99,7 @@ class Users extends React.Component<IUserProps, IUserStates> {
 
     return (
       <>
-        <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+        <Table loading={tableLoading} rowSelection={rowSelection} columns={columns} dataSource={data} />
       </>
     )
   }
