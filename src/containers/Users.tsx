@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
-import Users from '@pages/Users'
+import Users from '@pages/User/Users'
 import { USER_QUERY_ASYNC } from '@action/index'
 
 const mapStateToProps = (state: any) => {
   return {
-    data: state.user.data
+    data: state.user.data,
+    tableLoading: state.user.tableLoading
   }
 }
 
