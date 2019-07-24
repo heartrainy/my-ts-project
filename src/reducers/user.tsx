@@ -11,7 +11,7 @@ const initState: any = {
 export default function User(state = initState, action: any) {
   switch (action.type) {
     case USER_QUERY:
-      state.data = action.data.slice()
+      state.data = action.data ? action.data.slice() : []
       return {...state}
     case USER_TABLE_LOADING:
       state.tableLoading = action.tableLoading

@@ -15,6 +15,7 @@ function* query(action: any) {
   postParams.data = params
   yield put({ type: USER_TABLE_LOADING, tableLoading: true })
   const response = yield call(request, URL.USER.USERLIST, postParams)
+  console.log(response)
   console.log('中途')
   yield put({ type: USER_QUERY, ...response })
   yield put({ type: USER_TABLE_LOADING, tableLoading: false })

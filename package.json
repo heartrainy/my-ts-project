@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.config.js",
-    "build": "webpack --mode production --config build/webpack.config.js",
+    "build": "webpack --config build/webpack.config.js",
     "build:dll": "webpack --config build/webpack.config.dll.js"
   },
   "license": "MIT",
@@ -49,6 +49,7 @@
     "react-router-dom": "^5.0.1",
     "redux-saga": "^1.0.5",
     "sass": "^1.22.5",
+    "terser-webpack-plugin": "^1.3.0",
     "typescript": "^3.5.3",
     "umi-request": "^1.1.0"
   }

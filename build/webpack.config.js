@@ -1,20 +1,23 @@
 const path = require('path');
 const OptimizeCss = require('optimize-css-assets-webpack-plugin'); // 压缩优化css插件
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩优化js插件
+const TerserPlugin = require('terser-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const plugins = require('./plugins');
 const jsRules = require('./rules/jsRules');
 const styleRules = require('./rules/styleRules');
 
 module.exports = {
-  mode: 'development',
+  // mode: 'development',
+  mode: 'production',
   optimization: { // 优化项
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true, // 并发打包
-        sourceMap: true
-      }),
+      // new UglifyJsPlugin({
+      //   cache: true,
+      //   parallel: true, // 并发打包
+      //   sourceMap: true
+      // }),
+      new TerserPlugin(),
       new OptimizeCss()
     ]
   },
